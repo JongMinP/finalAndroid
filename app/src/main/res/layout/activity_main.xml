@@ -4,8 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#95f896fe"
     tools:context="com.example.kosta.beautymateandroid.MainActivity">
 
 
-
+    <Button
+        android:id="@+id/goSurvey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Survey" />
 </FrameLayout>

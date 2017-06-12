@@ -53,16 +53,13 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.loginBtn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new LoginCheckTask().execute("http://10.0.2.2:8080/BeautyMateOrigin/customer/customer/login/id/{id}");
+                String customerId = String.valueOf(idEdit.getText());
+                new LoginCheckTask().execute("http://10.0.2.2:8080/BeautyMateOrigin/customer/customer/login");
             }
         });
     }
 
     private class LoginCheckTask extends AsyncTask<String, Void, String> {
-        //원래는 서비스에서 전부 처리해서 가져옴
-        //GCM 이라는 방식으로 노티를 보내줄수도있는데 .. 뮤플이건 받을게없으니 안함
-        //Task 두잉 빽그라운드에서는 아이디 에딧 겟테스크가안돼서 task.excute 로 URL 을 쓸수없음
-        //겟 포스트로바꿀수있는 httpurlConnection 을쓸꺼다
         @Override
         protected String doInBackground(String... params) {
             HttpURLConnection http = null;
@@ -71,15 +68,15 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 URL url = new URL(params[0]);
                 http = (HttpURLConnection) url.openConnection();
+                http.setReadTimeout(10000 /* milliseconds */);
+                http.setConnectTimeout(15000 /* milliseconds */);
                 http.setRequestMethod("POST");
                 http.connect();
-                //POST방식으로 할수있는걸함찾아봐~ **********
-                //이 안에서 아이디겟텍스트 이런거하면 안돼
 
                 //스트림열림
                 is = http.getInputStream();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
-                checkStr = reader.readLine(); // 이러면 한줄을 읽어올거임 트루나 펄스가 들어올거임
+                checkStr = reader.readLine();
 
 
             } catch (MalformedURLException e) {

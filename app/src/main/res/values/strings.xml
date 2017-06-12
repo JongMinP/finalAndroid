@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">BeautyMateAndroid</string>
+    <string name="checkfirst">--작성전에 확인해주세요.--</string>
+    <string name="explainbeforsurvey">- 설문 조사는 약 5분 정도 소요 됩니다.\n\n - 설문은 지성vs건성 , 민감성vs저항성, 색소성vs비색소성, 주름vs탱탱함 4개의 파트로 구성 되어있습니다.(전부 선택 하셔야 합니다.\n\n - 설문은 솔직하게 답변해 주세요.\n\n - 자신의 선입관이나, 타인의 조언으로 인해 답변이 바뀌지 않도록 주의 하세요.\n\n - 설문은 오직 피부타입 산출에만 이용됩니다.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pt1">Part.1 지성 (Oily)Vs건성(Dry) \n\n 피지 생성 및 수분 측정</string>
 </resources>
