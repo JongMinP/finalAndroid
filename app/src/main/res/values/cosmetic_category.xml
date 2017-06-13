@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cosmetic_category">
+        <item>All</item>
+        <item>essence</item>
+        <item>skin</item>
+        <item>lotion</item>
+        <item>cream</item>
+        <item>mist</item>
+        <item>faceOil</item>
+    </string-array>
+
+</resources>
