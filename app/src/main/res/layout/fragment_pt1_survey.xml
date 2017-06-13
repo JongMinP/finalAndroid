@@ -20,13 +20,13 @@
             android:layout_weight="1"
             android:text="뒤로" />
         <Button
-            android:id="@+id/btn_pt1_new"
+            android:id="@+id/btn_pt1_restart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="처음부터" />
         <Button
-            android:id="@+id/btn_pt1_next"
+            android:id="@+id/btn_pt1_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

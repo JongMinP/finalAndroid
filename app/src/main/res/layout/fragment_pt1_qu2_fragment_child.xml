@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#33fb00ff"
-    tools:context="com.example.kosta.beautymateandroid.survey.Pt1Qu1FragmentChild">
+    tools:context="com.example.kosta.beautymateandroid.survey.Pt1Qu2FragmentChild">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
                 android:layout_margin="10dp"
                 android:background="#e6a3ed"
                 android:textStyle="bold"
-                android:text="Part1_1. 세안 이후에 보습제, 자외선 차단제. 색조화장품, 파우더 혹은 다른제품을 바르지 않고 2~3시간 후에 밝은 조명 아래에서 거울을 보았을 때, 당신의 이마와 양 볼의 느낌이나 외양은?"
+                android:text="Part1_2. 위 1번과 같은 상황에서, 얼굴은 윤기가 있나요?"
                 android:textSize="20dp" />
         </LinearLayout>
 
@@ -33,32 +33,32 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/pt1qu1_op1"
+                android:id="@+id/pt1qu2_op1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="① 매우 거칠거나, 각질이 떨어지거나, 혹은 창백하다." />
+                android:text="① 전혀 아니다." />
 
             <Button
-                android:id="@+id/pt1qu1_op2"
+                android:id="@+id/pt1qu2_op2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="② 탱탱하다." />
+                android:text="② 때때로 그렇다." />
 
             <Button
-                android:id="@+id/pt1qu1_op3"
+                android:id="@+id/pt1qu2_op3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="③ 빛의 반사가 없으며 수화가 잘되어 있다." />
+                android:text="③ 자주 그렇다." />
 
             <Button
-                android:id="@+id/pt1qu1_op4"
+                android:id="@+id/pt1qu2_op4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
-                android:text="④ 밝은 빛을 반사하며 윤기가 난다." />
+                android:text="④ 항상 그렇다." />
         </LinearLayout>
     </LinearLayout>
 
