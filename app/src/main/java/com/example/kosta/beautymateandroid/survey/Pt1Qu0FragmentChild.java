@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 
 import com.example.kosta.beautymateandroid.R;
 
-public class Pt1FragmentChild extends Fragment {
-    public static Pt1FragmentChild newInstance(){
-        return new Pt1FragmentChild();
+public class Pt1Qu0FragmentChild extends Fragment {
+    public static Pt1Qu0FragmentChild newInstance(){
+        return new Pt1Qu0FragmentChild();
     }
 
-    public Pt1FragmentChild() {
+    public Pt1Qu0FragmentChild() {
     }
     @Nullable
     @Override

@@ -1,13 +1,27 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/pt1_qu_child_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#33fb00ff"
     android:orientation="vertical">
 
-    <FrameLayout
-        android:id="@+id/fragment_pt4_qu1"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical">
 
-    </FrameLayout>
+        <Button
+            android:id="@+id/btn_pt4_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Part1 작성하기" />
 
+        <TextView
+            android:id="@+id/survey_pt4_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+    </LinearLayout>
 </FrameLayout>

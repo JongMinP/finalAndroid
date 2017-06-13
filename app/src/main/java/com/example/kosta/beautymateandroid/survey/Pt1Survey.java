@@ -1,9 +1,6 @@
 package com.example.kosta.beautymateandroid.survey;
 
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -15,6 +12,8 @@ import android.widget.Button;
 import com.example.kosta.beautymateandroid.R;
 
 public class Pt1Survey extends Fragment implements View.OnClickListener {
+    int fragmentController = 0;
+    Fragment fg;
 
     public static Pt1Survey newInstance() {
         return new Pt1Survey();
@@ -36,12 +35,30 @@ public class Pt1Survey extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Fragment fg;
         switch (v.getId()){
             case R.id.btn_pt1_next:
-                fg = Pt1FragmentChild.newInstance();
+                fragmentController ++;
+                //여기서 각번호 조건 처리
+                goFragment();
+                break;
+            case R.id.btn_pt1_back:
+                fragmentController --;
+                goFragment();
+                break;
+            case R.id.btn_pt1_new:
+                fg = Pt1Qu0FragmentChild.newInstance();
                 setChildFragment(fg);
                 break;
+        }
+    }
+
+    private void goFragment(){
+        if(fragmentController == 0 ) {
+            fg = Pt1Qu0FragmentChild.newInstance();
+            setChildFragment(fg);
+        }else if (fragmentController == 1) {
+            fg = Pt1Qu1FragmentChild.newInstance();
+            setChildFragment(fg);
         }
     }
 
