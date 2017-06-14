@@ -1,8 +1,9 @@
 package com.example.kosta.beautymateandroid.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Customer {
+public class Customer implements Serializable{
 	
 	private int customerNo;
 	private String id;

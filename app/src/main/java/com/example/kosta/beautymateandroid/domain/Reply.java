@@ -1,8 +1,8 @@
 package com.example.kosta.beautymateandroid.domain;
 
-import java.util.Date;
+import java.io.Serializable;
 
-public class Reply {
+public class Reply implements Serializable{
 	
 	private int replyNo;
 	private String replyContent;

@@ -1,10 +1,10 @@
 package com.example.kosta.beautymateandroid.domain;
 
+import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
-public class Review {
+public class Review implements Serializable{
 
 	private int reviewNo;
 	private String reviewTitle;

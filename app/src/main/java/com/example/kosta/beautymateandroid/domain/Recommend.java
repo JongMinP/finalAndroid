@@ -1,6 +1,8 @@
 package com.example.kosta.beautymateandroid.domain;
 
-public class Recommend {
+import java.io.Serializable;
+
+public class Recommend implements Serializable{
 	
 	private int recommendNo;
 	private int cosmeticNo;
