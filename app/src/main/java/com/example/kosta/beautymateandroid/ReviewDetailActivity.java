@@ -1,28 +1,21 @@
 package com.example.kosta.beautymateandroid;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.kosta.beautymateandroid.domain.Reply;
 import com.example.kosta.beautymateandroid.domain.Review;
 import com.example.kosta.beautymateandroid.service.ReviewService;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.lang.ref.WeakReference;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
 
 import retrofit2.Call;
@@ -66,7 +59,31 @@ public class ReviewDetailActivity extends AppCompatActivity {
 
         ImageView img = (ImageView)findViewById(R.id.dImage);
 
-        new ImageLoadingTask(img).execute(review.getCosmetic().getImg());
+        Glide.with(this).load(review.getCosmetic().getImg()).override(400,400).into(img);
+
+
+        if(review.getImage()!=null && !review.getImage().equals("")){
+
+            LinearLayout layout = (LinearLayout)findViewById(R.id.detailLinear);
+
+            String immg = review.getImage();
+            String [] imgs = immg.split(",");
+            Log.d("size",Integer.toString(imgs.length));
+            ImageView [] ivs = new ImageView[imgs.length];
+            for(int i=0; i<imgs.length; i ++){
+                ImageView iv = new ImageView (this);
+                ivs[i] = iv;
+            }
+            for(int i=0; i<imgs.length; i++){
+                layout.addView(ivs[i]);
+                String front = imgs[i].substring(0,12);
+                String end = imgs[i].substring(14);
+                Glide.with(this).load("http://10.0.2.2:8080/BeautyMate/displayFile?fileName="+front + end).override(400,400).into(ivs[i]);
+
+            }
+
+        }
+
 
         list = (ListView)findViewById(R.id.replyList);
 
@@ -124,63 +141,6 @@ public class ReviewDetailActivity extends AppCompatActivity {
 
     }
 
-    private class ImageLoadingTask extends AsyncTask<String, Void, Bitmap> {
-
-        private final WeakReference<ImageView> imageViewWeakReference;
-
-        public ImageLoadingTask(ImageView img) {
-            this.imageViewWeakReference = new WeakReference<ImageView>(img);
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... params) {
-            URL url = null;
-
-            try {
-                url = new URL(params[0]);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            return getRemoteImage(url);
-        }
-
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            if (isCancelled()) {
-                bitmap = null;
-
-            }
-
-            if (imageViewWeakReference != null) {
-                ImageView imageView = imageViewWeakReference.get();
-                if (imageView != null) {
-                    imageView.setImageBitmap(bitmap);
-                }
-            }
-        }
-    }
-
-
-    private Bitmap getRemoteImage(final URL url) {
-        Bitmap bitmap = null;
-
-        URLConnection conn;
-
-        try {
-            conn = url.openConnection();
-            conn.connect();
-
-            BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
-            bitmap = BitmapFactory.decodeStream(bis);
-            bis.close();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return bitmap;
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

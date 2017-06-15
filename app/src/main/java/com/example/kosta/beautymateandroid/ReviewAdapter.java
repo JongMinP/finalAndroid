@@ -1,24 +1,18 @@
 package com.example.kosta.beautymateandroid;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.kosta.beautymateandroid.domain.Review;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.lang.ref.WeakReference;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.util.List;
 
 /**
@@ -82,7 +76,31 @@ public class ReviewAdapter extends BaseAdapter{
 
         ImageView image = (ImageView) convertView.findViewById(R.id.image);
 
-        new ImageLoadingTask(image).execute(data.get(position).getCosmetic().getImg());
+//        new ImageLoadingTask(image).execute(data.get(position).getCosmetic().getImg());
+
+        Glide.with(context).load(data.get(position).getCosmetic().getImg()).override(300,300).into(image);
+
+        if(data.get(position).getImage() !=null && !data.get(position).getImage().equals("")){
+
+            LinearLayout layout = (LinearLayout)convertView.findViewById(R.id.reviewLinaer);
+
+            String img = data.get(position).getImage();
+            String [] imgs = img.split(",");
+            Log.d("size",Integer.toString(imgs.length));
+            ImageView [] ivs = new ImageView[imgs.length];
+
+
+            for(int i=0; i<imgs.length; i ++){
+                ImageView iv = new ImageView (context);
+                ivs[i] = iv;
+            }
+            for(int i=0; i<imgs.length; i++){
+                layout.addView(ivs[i]);
+                Glide.with(context).load("http://10.0.2.2:8080/BeautyMate/displayFile?fileName="+imgs[i]).override(200,200).into(ivs[i]);
+
+            }
+
+        }
 
 
         // 이미지
@@ -92,61 +110,4 @@ public class ReviewAdapter extends BaseAdapter{
 
     }
 
-    private class ImageLoadingTask extends AsyncTask<String, Void, Bitmap> {
-
-        private final WeakReference<ImageView> imageViewWeakReference;
-
-        public ImageLoadingTask(ImageView img) {
-            this.imageViewWeakReference = new WeakReference<ImageView>(img);
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... params) {
-            URL url = null;
-
-            try {
-                url = new URL(params[0]);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-            return getRemoteImage(url);
-        }
-
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap) {
-            if (isCancelled()) {
-                bitmap = null;
-
-            }
-
-            if (imageViewWeakReference != null) {
-                ImageView imageView = imageViewWeakReference.get();
-                if (imageView != null) {
-                    imageView.setImageBitmap(bitmap);
-                }
-            }
-        }
-    }
-
-
-    private Bitmap getRemoteImage(final URL url) {
-        Bitmap bitmap = null;
-
-        URLConnection conn;
-
-        try {
-            conn = url.openConnection();
-            conn.connect();
-
-            BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
-            bitmap = BitmapFactory.decodeStream(bis);
-            bis.close();
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return bitmap;
-    }
 }

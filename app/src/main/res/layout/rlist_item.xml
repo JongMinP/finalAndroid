@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#f2f2f2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,72 +16,61 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:orientation="vertical">
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#0000FF"
-                android:text="CosmeticName"/>
-            <TextView
-                android:id="@+id/cosmeticName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="#000000"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#0000FF"
-                android:text="Volume"/>
-            <TextView
-                android:id="@+id/volume"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="#000000"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#0000FF"
-                android:text="Cost"/>
-            <TextView
-                android:id="@+id/cost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textColor="#000000"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#0000FF"
-                android:text="Brand"/>
             <TextView
                 android:id="@+id/brand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:textColor="#000000"/>
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:layout_marginLeft="15dp" />
+
+            <TextView
+                android:id="@+id/cosmeticName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:layout_marginLeft="15dp"/>
+
+            <TextView
+                android:id="@+id/volume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:layout_marginLeft="15dp"/>
+            <TextView
+                android:id="@+id/cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:layout_marginLeft="15dp"/>
 
 
         </LinearLayout>
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#0000FF"
-        android:text="평점"/>
+
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textColor="#0000FF"-->
+        <!--android:text="평점"/>-->
     <TextView
         android:id="@+id/grade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:text=""/>
 
 
@@ -89,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000000"
-        android:textSize="20sp"
+        android:textSize="20dp"
         android:text=""/>
 
     <TextView
@@ -97,7 +87,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#000000"
-        android:textSize="20sp"/>
+        android:textSize="20dp"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
