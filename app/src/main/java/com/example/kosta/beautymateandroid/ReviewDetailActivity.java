@@ -6,12 +6,16 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.kosta.beautymateandroid.domain.Reply;
 import com.example.kosta.beautymateandroid.domain.Review;
+import com.example.kosta.beautymateandroid.service.ReviewService;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -21,11 +25,23 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class ReviewDetailActivity extends AppCompatActivity {
+    private static final int REQUEST_MODIFY=1;
     private List<Reply> replys;
     private ReplyAdapter adapter;
     private ListView list;
+    private Review review;
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +49,7 @@ public class ReviewDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review_detail);
 
         Intent intent =getIntent();
-        Review review = (Review)intent.getExtras().get("review");
+        review = (Review)intent.getExtras().get("review");
 
         ((TextView)findViewById(R.id.dBrand)).setText(review.getCosmetic().getBrand());
         ((TextView)findViewById(R.id.dContentText)).setText(review.getReviewContent());
@@ -59,6 +75,52 @@ public class ReviewDetailActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         list.setAdapter(adapter);
+
+
+        Button deleteBtn = (Button)findViewById(R.id.deleteBtn);
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                RestClient<ReviewService> client;
+                ReviewService rservice;
+
+                client = new RestClient<>();
+                rservice = client.getClient(ReviewService.class);
+
+                Log.d("asdsa",Integer.toString(review.getReviewNo()));
+
+                Call<Integer> call = rservice.reviewRemove(review.getReviewNo());
+
+                call.enqueue(new Callback<Integer>() {
+                    @Override
+                    public void onResponse(Call<Integer> call, Response<Integer> response) {
+                        Log.d("aa","ee");
+                    }
+
+                    @Override
+                    public void onFailure(Call<Integer> call, Throwable t) {
+                        Log.d("tt", "망");
+                    }
+                });
+
+                finish();
+            }
+        });
+
+
+        Button modifyBtn = (Button)findViewById(R.id.modifyBtn);
+
+        modifyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ReviewDetailActivity.this,ReviewModifyActivity.class);
+                intent.putExtra("review",review);
+                startActivityForResult(intent,REQUEST_MODIFY);
+
+            }
+        });
 
     }
 
@@ -118,5 +180,23 @@ public class ReviewDetailActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         return bitmap;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if(resultCode == RESULT_OK){
+
+            Review re = (Review) data.getExtras().get("review");
+
+            if(requestCode == REQUEST_MODIFY){
+                ((TextView)findViewById(R.id.dContentText)).setText(re.getReviewContent());
+                ((TextView)findViewById(R.id.dTitleText)).setText(re.getReviewTitle());
+                ((TextView) findViewById(R.id.dGrade)).setText(Integer.toString(re.getRecommend().getGrade()));
+            }
+
+        }
+
+
     }
 }

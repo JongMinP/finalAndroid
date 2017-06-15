@@ -37,7 +37,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".CosmeticDetailActivity" />
-        <activity android:name=".ReviewDetailActivity"/>
+        <activity android:name=".ReviewDetailActivity" />
+        <activity android:name=".ReviewRegisterActivity" />
+        <activity android:name=".ReviewModifyActivity"></activity>
     </application>
 
 </manifest>
